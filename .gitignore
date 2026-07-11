@@ -1,4 +1,3 @@
-# Vivado build artifacts
 .Xil/
 *.jou
 *.log
@@ -8,17 +7,10 @@
 *.ip_user_files/
 *.runs/
 *.sim/
-*.srcs/*.xpr
-
-# Icarus Verilog / simulation outputs
 *.vvp
 *.vcd
-
-# Python
 __pycache__/
 *.pyc
-
-# Editor swap files
 *.swp
 *.swo
 *~
