@@ -112,6 +112,14 @@ integer fcsv;
 integer test_id;
 integer total_pass, total_fail;
 
+// VCD waveform dump (only when +vcd is passed to vvp)
+initial begin
+    if ($test$plusargs("vcd")) begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, tb_combined_ecc);
+    end
+end
+
 // =====================================================
 // Utility tasks
 // =====================================================
@@ -338,7 +346,7 @@ initial begin
         reg [5:0]  bi_val;
                 word_indices[0] = 0;  word_indices[1] = 1;  word_indices[2] = 2;
         word_indices[3] = 3;  word_indices[4] = 4;  word_indices[5] = 5;
-        word_indices[6] = 6;  word_indices[7] = 8;  word_indices[8] = 16;
+        word_indices[6] = 6;  word_indices[7] = 8;  word_indices[8] = 16;  word_indices[9] = 17;
         bit_positions[0] = 0; bit_positions[1] = 22; bit_positions[2] = 44;
         bit_positions[3] = 5; bit_positions[4] = 11; bit_positions[5] = 32;
         bit_positions[6] = 38; bit_positions[7] = 43; bit_positions[8] = 1; bit_positions[9] = 2;
@@ -370,7 +378,7 @@ initial begin
         reg [31:0] wi_val;
                 word_indices[0] = 0;  word_indices[1] = 1;  word_indices[2] = 2;
         word_indices[3] = 3;  word_indices[4] = 4;  word_indices[5] = 5;
-        word_indices[6] = 6;  word_indices[7] = 8;  word_indices[8] = 16;
+        word_indices[6] = 6;  word_indices[7] = 8;  word_indices[8] = 16;  word_indices[9] = 17;
                 pair_p1[0] = 0;  pair_p2[0] = 22;
         pair_p1[1] = 5;  pair_p2[1] = 38;
         pair_p1[2] = 1;  pair_p2[2] = 44;
