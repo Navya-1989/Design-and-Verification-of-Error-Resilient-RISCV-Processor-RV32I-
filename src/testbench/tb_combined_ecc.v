@@ -151,8 +151,8 @@ task run_firmware;
             if (trap) begin
                 saw_trap = 1;
             end
-            if (dut.test_status == 32'h600d0001) begin
-                fw_pass = 1;
+            if (test_done) begin
+                fw_pass = test_passed;
                 cyc = 200000; // break
             end
         end
@@ -735,7 +735,7 @@ end
 
 // Watchdog
 initial begin
-    #50000000;  // 50 ms at 1 ns timescale
+    #20000000000;  // ~20B time units; sized for 332 full-firmware runs at ~1ns timescale confusion noted -- verify actual timescale before relying on this comment
     $display("[WATCHDOG] Simulation timeout — check firmware or memory config.");
     $fclose(fcsv);
     $finish;

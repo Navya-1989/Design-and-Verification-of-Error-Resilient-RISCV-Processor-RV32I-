@@ -243,9 +243,11 @@ module picorv32_ecc_top #(
                             test_status  <= cpu_mem_wdata;
                             test_done    <= (cpu_mem_wdata != 32'd0);
                             test_passed  <= (cpu_mem_wdata == TEST_STATUS_PASS);
+                            $display("[DEBUG TEST_STATUS_WRITE] time=%0t wdata=%h", $time, cpu_mem_wdata);
                         end
                         TEST_SIG_ADDR: begin
                             test_signature <= cpu_mem_wdata;
+                            $display("[DEBUG TEST_SIG_WRITE] time=%0t wdata=%h", $time, cpu_mem_wdata);
                         end
                         UART_DATA_ADDR: begin
                             uart_char <= cpu_mem_wdata[7:0];

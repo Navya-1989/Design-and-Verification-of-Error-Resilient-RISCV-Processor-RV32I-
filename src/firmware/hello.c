@@ -173,7 +173,7 @@ void hello(void)
 	/* --- Block 5: Multiply / divide stress --- */
 	check_equal(hw_mul(0x1234u, 0x5678u), 0x06260060u, 0x00070060);
 	check_equal(hw_div(0xFFFFFFFFu, 0xFFFFu), 0x00010001u, 0x00080001);
-	check_equal(hw_rem(0x100000u, 0xFFu), 0x00000001u, 0x00090001);
+	check_equal(hw_rem(0x100000u, 0xFFu), 0x00000010u, 0x00090010);
 
 	/* --- Block 6: Fibonacci (branch-heavy loop) --- */
 	check_equal(fib(10), 55,  0x000A0037); /* fib(10) = 55 */
