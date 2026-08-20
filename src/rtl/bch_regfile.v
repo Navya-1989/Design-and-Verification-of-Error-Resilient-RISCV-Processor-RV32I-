@@ -385,4 +385,10 @@ end
 
 // No initial block needed — reset clears flags via always block above
 
+
+    // Simulation-only backdoor for testbench fault injection (toggle, call twice to restore)
+    task automatic flip_bit44_debug(input integer waddr);
+        regfile_bch[waddr][44] = ~regfile_bch[waddr][44];
+    endtask
+
 endmodule

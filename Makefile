@@ -31,6 +31,7 @@ FW_DIR  = src/firmware
 
 # Core RTL source list (order matters for some simulators)
 RTL_SRCS = $(RTL_DIR)/picorv32.v     \
+           $(RTL_DIR)/hammingcode_generator.sv \
            $(RTL_DIR)/bch_ecc.v      \
            $(RTL_DIR)/bch_regfile.v  \
            $(RTL_DIR)/ecc_instr_memory.v \

@@ -151,8 +151,8 @@ task run_firmware;
             if (trap) begin
                 saw_trap = 1;
             end
-            if (test_done) begin
-                fw_pass = test_passed;
+            if (dut.test_status == 32'h600d0001) begin
+                fw_pass = 1;
                 cyc = 200000; // break
             end
         end
@@ -311,9 +311,9 @@ initial begin
 
     fcsv = $fopen("combined_ecc_results.csv", "w");
     $fwrite(fcsv,
-        "test_id,category,fetch_fault,rf_fault,fw_pass,trap_seen,"
-        "fetch_single_cnt,fetch_double_cnt,fetch_fatal_cnt,"
-        "rf_single_err,rf_double_err,rf_fatal,result\n");
+        {"test_id,category,fetch_fault,rf_fault,fw_pass,trap_seen,",
+         "fetch_single_cnt,fetch_double_cnt,fetch_fatal_cnt,",
+         "rf_single_err,rf_double_err,rf_fatal,result\n"});
 
     // =====================================================
     // CATEGORY A — Fetch-stage fault injection
@@ -446,10 +446,9 @@ initial begin
             fi_fetch_pos1     = t_p1[ti];
             fi_fetch_pos2     = t_p2[ti];
             // Force a third flip directly into the stored codeword (bit 44)
-            force dut.fetch_ecc_mem.instr_mem_bch[tw_val][44] =
-                ~dut.fetch_ecc_mem.instr_mem_bch[tw_val][44];
+            dut.fetch_ecc_mem.flip_bit44_debug(tw_val);
             run_firmware(fw_ok, saw_trap);
-            release dut.fetch_ecc_mem.instr_mem_bch[tw_val][44];
+            dut.fetch_ecc_mem.flip_bit44_debug(tw_val);
             fi_fetch_en     = 0;
             fi_fetch_double = 0;
             eval_fetch_fatal("A3", "fetch_triple", fw_ok, saw_trap);
@@ -527,6 +526,8 @@ initial begin
     // --- B2: Double-bit register faults (5 cases) ---
     begin : b2_block
         integer ri;
+        integer bi;
+        integer bit_pos;
         integer reg_addrs[0:24];
         reg [5:0] ra_val;
                 reg_addrs[0] = 1;
@@ -566,8 +567,8 @@ initial begin
             force `RF.inject_reg_fault  = 1'b1;
             force `RF.inject_reg_double = 1'b1;
             force `RF.fault_reg_addr    = ra_val;
-            force `RF.fault_reg_bit1    = (pi_idx == 0) ? 6'd5 : 6'd12;
-            force `RF.fault_reg_bit2    = (pi_idx == 0) ? 6'd38 : 6'd30;
+            force `RF.fault_reg_bit1    = (bi == 0) ? 6'd5 : 6'd12;
+            force `RF.fault_reg_bit2    = (bi == 0) ? 6'd38 : 6'd30;
             run_firmware(fw_ok, saw_trap);
             release `RF.inject_reg_fault;
             release `RF.inject_reg_double;
@@ -629,14 +630,14 @@ initial begin
             force `RF.fault_reg_bit1    = 6'd0;
             force `RF.fault_reg_bit2    = 6'd22;
             // Flip bit 44 (the pad bit) of the register's stored codeword
-            force `RF.regfile_bch[ra_val][44] = ~`RF.regfile_bch[ra_val][44];
+            `RF.flip_bit44_debug(ra_val);
             run_firmware(fw_ok, saw_trap);
             release `RF.inject_reg_fault;
             release `RF.inject_reg_double;
             release `RF.fault_reg_addr;
             release `RF.fault_reg_bit1;
             release `RF.fault_reg_bit2;
-            release `RF.regfile_bch[ra_val][44];
+            `RF.flip_bit44_debug(ra_val);
             eval_rf_fatal("B3", "rf_triple", fw_ok, saw_trap);
         end
     end

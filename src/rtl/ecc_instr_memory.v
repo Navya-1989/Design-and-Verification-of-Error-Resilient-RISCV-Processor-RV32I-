@@ -112,7 +112,7 @@ module ecc_instr_memory #(
         for (i = 0; i < WORDS; i = i + 1)
             memory[i] = 32'h00000013;           // NOP
 
-        $readmemh("firmware/firmware.hex", memory);
+        $readmemh("src/firmware/firmware.hex", memory);
 
         for (i = 0; i < WORDS; i = i + 1)
             instr_mem_bch[i] = bch_encode_func(memory[i]);
@@ -294,5 +294,11 @@ module ecc_instr_memory #(
             endcase
         end
     end
+
+
+    // Simulation-only backdoor for testbench fault injection (toggle, call twice to restore)
+    task automatic flip_bit44_debug(input integer widx);
+        instr_mem_bch[widx][44] = ~instr_mem_bch[widx][44];
+    endtask
 
 endmodule
