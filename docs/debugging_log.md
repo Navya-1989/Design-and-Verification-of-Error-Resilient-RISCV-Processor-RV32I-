@@ -175,3 +175,34 @@
   BCH(45,32,t=2) fatal-detection limitation (see earlier finding).
 - Zero unexplained failures. Zero failures outside the one documented,
   understood ECC-scheme limitation.
+
+## Session: August — Investigating Hamming/RRNS merge
+
+### Finding — RRNS ALU and Hamming CPU-state correction are incomplete in the committed RTL
+
+- Investigated reference-hamming-rrns/ (Akshat's repo) to plan merging
+  Hamming + RRNS protection into the unified baseline.
+- RRNS ALU: does not exist as implemented logic anywhere in the repo.
+  Only present as forward-looking comments ("//AM comment below line
+  when implementing rrns") and an appropriately-sized but otherwise
+  unused input port (in_err[48:0]). Checked picorv32.v, picorv32_wrapper.sv,
+  and all related files via grep across the full reference-hamming-rrns
+  tree -- no RRNS logic found.
+- Hamming CPU-state protection: HALF-implemented. hammingcode_generator.sv
+  defines two modules: hammingcodegenerator (encoder) and operandrecovery
+  (decoder/corrector). Only the encoder is instantiated in picorv32.v
+  (h1 through h8, encoding cpu_state_trap/fetch/ld_rs1/ld_rs2/exec/
+  shift/stmem/ldmem). operandrecovery is defined but never instantiated
+  anywhere in any file in the reference repo -- confirmed via
+  grep -n "^\s*operandrecovery\b" returning zero matches.
+- Practical implication: as committed, CPU states are Hamming-ENCODED
+  but never DECODED or CORRECTED. The encoded values exist but nothing
+  reads them back through error correction. This does not function as
+  real error correction in the current build, despite being described
+  as a completed feature in the thesis narrative.
+- Decision: scope down from "merge existing Hamming+RRNS work" to two
+  separate, explicitly sized tasks:
+    1. Complete the Hamming CPU-state correction path by wiring in
+       operandrecovery (achievable now, module already exists).
+    2. RRNS ALU implementation from scratch -- explicitly deferred as
+       separate future work, not part of current session.
