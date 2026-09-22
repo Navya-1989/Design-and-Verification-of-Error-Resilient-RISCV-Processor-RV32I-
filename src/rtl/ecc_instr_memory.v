@@ -72,8 +72,8 @@ module ecc_instr_memory #(
     // -------------------------------------------------------
     // Memory arrays
     // -------------------------------------------------------
-    reg [31:0] memory       [0:WORDS-1]; // raw memory (data accesses)
-    reg [44:0] instr_mem_bch[0:WORDS-1]; // BCH-encoded instruction memory
+    (* ram_style = "block" *) reg [31:0] memory       [0:WORDS-1]; // raw memory (data accesses)
+    (* ram_style = "block" *) reg [44:0] instr_mem_bch[0:WORDS-1]; // BCH-encoded instruction memory
 
     integer i;
 

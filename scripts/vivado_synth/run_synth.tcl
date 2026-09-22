@@ -20,7 +20,7 @@ read_verilog -sv {
 
 read_xdc ./constraints.xdc
 
-synth_design -top $top_module -part $part_name
+synth_design -top $top_module -part $part_name -generic MEM_SIZE=32768
 
 write_checkpoint -force ${report_dir}/post_synth.dcp
 report_utilization -file ${report_dir}/utilization_post_synth.rpt
