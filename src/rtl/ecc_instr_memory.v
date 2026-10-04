@@ -171,6 +171,7 @@ module ecc_instr_memory #(
     reg [2:0]  state;
     reg [31:0] latched_addr;
     reg [31:0] latched_wdata;
+    reg [31:0] old_word;        // captured non-blocking to avoid mixed blocking/non-blocking access to memory[]
     reg [ 3:0] latched_wstrb;
     reg        bch_pending;
 
@@ -210,6 +211,7 @@ module ecc_instr_memory #(
 
                         end else if (|mem_wstrb) begin
                             // Write: update raw + BCH arrays next cycle
+                            old_word <= memory[mem_addr >> 2];
                             state <= S_WRITE_DONE;
 
                         end else if (mem_instr) begin
@@ -278,7 +280,7 @@ module ecc_instr_memory #(
                     // passed to bch_encode_func in the same delta cycle.
                     begin : write_word
                         reg [31:0] new_word;
-                        new_word = memory[latched_addr >> 2];
+                        new_word = old_word;
                         if (latched_wstrb[0]) new_word[ 7: 0] = latched_wdata[ 7: 0];
                         if (latched_wstrb[1]) new_word[15: 8] = latched_wdata[15: 8];
                         if (latched_wstrb[2]) new_word[23:16] = latched_wdata[23:16];
