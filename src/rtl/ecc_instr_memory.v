@@ -175,7 +175,7 @@ module ecc_instr_memory #(
     reg [ 3:0] latched_wstrb;
     reg        bch_pending;
 
-    always @(posedge clk or negedge resetn) begin
+    always @(posedge clk) begin
         if (!resetn) begin
             state         <= S_IDLE;
             mem_ready     <= 1'b0;
