@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Thu Oct 15 18:39:53 2026
+| Host         : Navya_Betha running 64-bit major release  (build 9200)
+| Command      : report_timing -sort_by group -max_paths 10 -path_type summary -file ./reports/timing_worst_paths.rpt
+| Design       : picorv32_ecc_top
+| Device       : 7a35t-cpg236
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Startpoint                     Endpoint                       Slack(ns)     
+----------------------------------------------------------------------------
+cpu_core/decoded_rs2_reg[0]/C  cpu_core/reg_op2_reg[5]/D      -2.917        
+cpu_core/decoded_rs2_reg[0]/C  cpu_core/reg_op2_reg[6]/D      -2.853        
+cpu_core/decoded_rs1_reg[0]/C  cpu_core/reg_op1_reg[5]/D      -2.762        
+cpu_core/decoded_rs1_reg[0]/C  cpu_core/reg_op1_reg[31]/D     -2.740        
+cpu_core/decoded_rs2_reg[0]/C  cpu_core/reg_op2_reg[17]/D     -2.735        
+cpu_core/decoded_rs2_reg[0]/C  cpu_core/reg_op2_reg[7]/D      -2.734        
+cpu_core/decoded_rs1_reg[0]/C  cpu_core/reg_op1_reg[11]/D     -2.724        
+cpu_core/decoded_rs2_reg[0]/C  cpu_core/reg_op2_reg[31]/D     -2.696        
+cpu_core/decoded_rs1_reg[0]/C  cpu_core/reg_op1_reg[2]/D      -2.650        
+cpu_core/decoded_rs1_reg[0]/C  cpu_core/reg_op1_reg[0]/D      -2.648        
+
+
+

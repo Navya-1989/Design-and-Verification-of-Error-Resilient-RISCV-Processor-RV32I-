@@ -1,0 +1,38 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Thu Oct 15 18:48:29 2026
+| Host         : Navya_Betha running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file util_hier.rpt
+| Design       : picorv32_ecc_top
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+|       Instance       |       Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+| picorv32_ecc_top     |             (top) |      11273 |       5641 |    5632 |    0 | 3392 |      0 |      0 |          0 |
+|   (picorv32_ecc_top) |             (top) |          0 |          0 |       0 |    0 |   99 |      0 |      0 |          0 |
+|   cpu_core           |          picorv32 |       3953 |       3953 |       0 |    0 | 2732 |      0 |      0 |          0 |
+|     (cpu_core)       |          picorv32 |       1510 |       1510 |       0 |    0 |  913 |      0 |      0 |          0 |
+|     pcpi_div         | picorv32_pcpi_div |        348 |        348 |       0 |    0 |  200 |      0 |      0 |          0 |
+|     pcpi_mul         | picorv32_pcpi_mul |        283 |        283 |       0 |    0 |  255 |      0 |      0 |          0 |
+|     rf               |       bch_regfile |       1815 |       1815 |       0 |    0 | 1364 |      0 |      0 |          0 |
+|   fetch_ecc_mem      |  ecc_instr_memory |       7322 |       1690 |    5632 |    0 |  561 |      0 |      0 |          0 |
+|     (fetch_ecc_mem)  |  ecc_instr_memory |       6913 |       1281 |    5632 |    0 |  386 |      0 |      0 |          0 |
+|     bch_dec          |  bch_decoder_prod |        409 |        409 |       0 |    0 |  175 |      0 |      0 |          0 |
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
