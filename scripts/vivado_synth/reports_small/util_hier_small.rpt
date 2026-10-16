@@ -1,0 +1,37 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Thu Oct 15 19:05:32 2026
+| Host         : Navya_Betha running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file ./reports_small/util_hier_small.rpt
+| Design       : picorv32_ecc_top
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+|       Instance       |       Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+| picorv32_ecc_top     |             (top) |       4187 |       4011 |     176 |    0 | 3019 |      0 |      0 |          0 |
+|   (picorv32_ecc_top) |             (top) |          0 |          0 |       0 |    0 |   99 |      0 |      0 |          0 |
+|   cpu_core           |          picorv32 |       3505 |       3505 |       0 |    0 | 2490 |      0 |      0 |          0 |
+|     (cpu_core)       |          picorv32 |       1202 |       1202 |       0 |    0 |  627 |      0 |      0 |          0 |
+|     pcpi_div         | picorv32_pcpi_div |        370 |        370 |       0 |    0 |  200 |      0 |      0 |          0 |
+|     pcpi_mul         | picorv32_pcpi_mul |        330 |        330 |       0 |    0 |  255 |      0 |      0 |          0 |
+|     rf               |       bch_regfile |       1603 |       1603 |       0 |    0 | 1408 |      0 |      0 |          0 |
+|   fetch_ecc_mem      |  ecc_instr_memory |        682 |        506 |     176 |    0 |  430 |      0 |      0 |          0 |
+|     (fetch_ecc_mem)  |  ecc_instr_memory |        267 |         91 |     176 |    0 |  255 |      0 |      0 |          0 |
+|     bch_dec          |  bch_decoder_prod |        415 |        415 |       0 |    0 |  175 |      0 |      0 |          0 |
++----------------------+-------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

@@ -1,0 +1,6 @@
+cpu_core/bch_data_in[0]_i_1/I0 <- cpu_core/bch_data_in[44]_i_2/O (LUT2)
+cpu_core/bch_data_in[0]_i_1/I1 <- fetch_ecc_mem/bch_data_in[10]_i_2/O (LUT5)
+cpu_core/bch_data_in[0]_i_1/I2 <- fetch_ecc_mem/bch_data_in[33]_i_2/O (LUT2)
+cpu_core/bch_data_in[0]_i_1/I3 <- fetch_ecc_mem/bch_data_in[10]_i_3/O (LUT4)
+cpu_core/bch_data_in[0]_i_1/I4 <- PORT fi_fetch_pos1[3]
+cpu_core/bch_data_in[0]_i_1/I5 <- PORT fi_fetch_pos1[1]

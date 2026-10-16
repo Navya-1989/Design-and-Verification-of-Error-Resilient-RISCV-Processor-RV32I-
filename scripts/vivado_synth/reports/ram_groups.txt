@@ -1,0 +1,2 @@
+fetch_ecc_mem/memory_reg : 1408
+sample: fetch_ecc_mem/memory_reg_0_63_0_2

@@ -20,3 +20,7 @@ __pycache__/
 *.bin
 *.map
 *.csv
+*.dcp
+*.jou
+scripts/vivado_synth/clockInfo.txt
+scripts/vivado_synth/src/
