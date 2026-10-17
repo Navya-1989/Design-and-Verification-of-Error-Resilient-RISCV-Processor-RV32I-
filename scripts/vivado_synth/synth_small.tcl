@@ -1,3 +1,4 @@
+cd {//wsl.localhost/Ubuntu-24.04/home/navya/Design-and-Verification-of-Error-Resilient-RISCV-Processor-RV32I-/scripts/vivado_synth}
 read_verilog -sv {
     ../../src/rtl/picorv32.v
     ../../src/rtl/hammingcode_generator.sv

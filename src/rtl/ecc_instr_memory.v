@@ -114,8 +114,16 @@ module ecc_instr_memory #(
 
         $readmemh("src/firmware/firmware.hex", memory);
 
+`ifdef FPGA_SYNTH
+        $readmemh("src/firmware/firmware_bch.hex", instr_mem_bch);
+`else
+`ifdef FPGA_SYNTH
+        $readmemh("src/firmware/firmware_bch.hex", instr_mem_bch);
+`else
         for (i = 0; i < WORDS; i = i + 1)
             instr_mem_bch[i] = bch_encode_func(memory[i]);
+`endif
+`endif
 
         single_err_cnt = 32'd0;
         double_err_cnt = 32'd0;
@@ -299,8 +307,12 @@ module ecc_instr_memory #(
 
 
     // Simulation-only backdoor for testbench fault injection (toggle, call twice to restore)
+`ifndef FPGA_SYNTH
+`ifndef FPGA_SYNTH
     task automatic flip_bit44_debug(input integer widx);
         instr_mem_bch[widx][44] = ~instr_mem_bch[widx][44];
     endtask
+`endif
+`endif
 
 endmodule
