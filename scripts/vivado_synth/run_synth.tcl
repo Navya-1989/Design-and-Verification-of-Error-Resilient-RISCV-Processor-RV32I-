@@ -1,3 +1,4 @@
+cd {//wsl.localhost/Ubuntu-24.04/home/navya/Design-and-Verification-of-Error-Resilient-RISCV-Processor-RV32I-/scripts/vivado_synth}
 # =============================================================
 # Non-project-mode synthesis + implementation for picorv32_ecc_top
 # Target: Basys3 (Artix-7, xc7a35tcpg236-1)
@@ -20,7 +21,7 @@ read_verilog -sv {
 
 read_xdc ./constraints.xdc
 
-synth_design -top $top_module -part $part_name -mode out_of_context -generic MEM_SIZE=32768
+synth_design -top $top_module -part $part_name -mode out_of_context -generic MEM_SIZE=16384 -verilog_define FPGA_SYNTH
 
 write_checkpoint -force ${report_dir}/post_synth.dcp
 report_utilization -file ${report_dir}/utilization_post_synth.rpt
